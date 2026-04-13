@@ -26,7 +26,7 @@ def read_data(file_name, field):
             - None: If the field is not supported.
     """
 
-    # get current working directory path
+
     with open(file_name, "r") as file:
         data = json.load(file)
 
@@ -68,6 +68,19 @@ def binary_search(sequence, cislo):
     return found
 
 
+def pattern_search(sequence, pattern):
+    positions = set()
+
+    for i in range(len(sequence) - len(pattern) + 1):
+        piece = sequence[i:i + len(pattern)]
+
+        if piece == pattern:
+            positions.add(i)
+
+    return positions
+
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
 
@@ -84,7 +97,22 @@ def main():
     print( sequential_data)
     print( target)
     print( result)
-    sizes = [100, 500, 1000, 5000, 10000]
+
+    pattern = "ATA"
+
+
+    dna_data =
+
+    result = pattern_search(dna_data, pattern)
+
+    print(dna_data)
+    print(pattern)
+    print(result)
+
+
+
+
+    sizes = [1 , 1000, 10000]
 
     linear_times = []
     binary_times = []
@@ -106,7 +134,7 @@ def main():
         linear_time = (end - start) / 100
         linear_times.append(linear_time)
 
-        print("linear time:", linear_time)
+        print("linearní ččas:", linear_time)
 
 
         start = time.perf_counter()
@@ -114,8 +142,22 @@ def main():
             binary_search(data2, target2)
         end = time.perf_counter()
 
+        binary_time = (end - start) / 100
+        binary_times.append(binary_time)
 
+        print("binary time:", binary_time)
 
+    plt.plot(sizes, linear_times)
+    plt.plot(sizes, binary_times)
+
+    plt.xlabel("velikost")
+    plt.ylabel("očas")
+    plt.title("graf search")
+
+    plt.legend(["linearní", "binarní"])
+    plt.grid()
+
+    plt.show()
 
 
 if __name__ == "__main__":
