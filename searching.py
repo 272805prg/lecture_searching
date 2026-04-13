@@ -1,5 +1,13 @@
 from pathlib import Path
 import json
+import math
+import random
+import time
+import matplotlib.pyplot as plt
+from generators import unordered_sequence, ordered_sequence
+
+
+
 
 
 def read_data(file_name, field):
@@ -60,10 +68,6 @@ def binary_search(sequence, cislo):
     return found
 
 
-
-
-
-
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
 
@@ -72,8 +76,50 @@ def main():
     result = linear_search(sequential_data, target)
     print(result)
 
+    sorted_data = sorted(sequential_data)
+
+    result = binary_search(sorted_data, target)
+    print(result)
+
+    print( sequential_data)
+    print( target)
+    print( result)
+    sizes = [100, 500, 1000, 5000, 10000]
+
+    linear_times = []
+    binary_times = []
+
+    for size in sizes:
+        print("velikost:", size)
+
+        data1 = unordered_sequence(size)
+        data2 = ordered_sequence(size)
+
+        target1 = data1[0]
+        target2 = data2[0]
+
+        start = time.perf_counter()
+        for i in range(100):
+            linear_search(data1, target1)
+        end = time.perf_counter()
+
+        linear_time = (end - start) / 100
+        linear_times.append(linear_time)
+
+        print("linear time:", linear_time)
+
+
+        start = time.perf_counter()
+        for i in range(100):
+            binary_search(data2, target2)
+        end = time.perf_counter()
+
+
 
 
 
 if __name__ == "__main__":
     main()
+
+
+
