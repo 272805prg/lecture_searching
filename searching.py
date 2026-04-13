@@ -37,24 +37,27 @@ def linear_search(sekvence, cislo):
         "count": len(positions)
     }
 
-def binary_search(sekvence, cislo):
-    if cislo not in sekvence:
-        return None
+def binary_search(sequence, cislo):
     left = 0
-    right = len(sekvence) - 1
+    right = len(sequence) - 1
 
     found = False
 
     while left <= right:
         middle = int((left + right) / 2)
-        value = sekvence[middle]
+
+        value = sequence[middle]
 
         if value == cislo:
             found = True
             break
+        else:
+            if value < cislo:
+                left = middle + 1
+            else:
+                right = middle - 1
 
-
-
+    return found
 
 
 
@@ -68,6 +71,7 @@ def main():
 
     result = linear_search(sequential_data, target)
     print(result)
+
 
 
 
