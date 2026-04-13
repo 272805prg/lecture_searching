@@ -17,6 +17,7 @@ def read_data(file_name, field):
             - str: If field is 'dna_sequence'.
             - None: If the field is not supported.
     """
+
     # get current working directory path
     cwd_path = Path.cwd()
     
