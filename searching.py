@@ -18,14 +18,6 @@ def read_data(file_name, field):
             - None: If the field is not supported.
     """
 
-    allowed = {
-        "unordered_numbers"
-        "ordered_numbers"
-        "dna_sequence"
-    }
-
-    if field not in allowed:
-        return None
     # get current working directory path
     with open(file_name, "r") as file:
         data = json.load(file)
@@ -54,6 +46,7 @@ def main():
     target = 5
 
     result = linear_search(sequential_data, target)
+    print(result)
 
 
 
