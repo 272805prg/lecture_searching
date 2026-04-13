@@ -37,6 +37,27 @@ def linear_search(sekvence, cislo):
         "count": len(positions)
     }
 
+def binary_search(sekvence, cislo):
+    if cislo not in sekvence:
+        return None
+    left = 0
+    right = len(sekvence) - 1
+
+    found = False
+
+    while left <= right:
+        middle = int((left + right) / 2)
+        value = sekvence[middle]
+
+        if value == cislo:
+            found = True
+            break
+
+
+
+
+
+
 
 
 
